@@ -9,23 +9,46 @@ const app = express();
 
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 
+//routes here
+//food, days
+//the food entry goes into each day, like the notes app
+
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("I am serving, I am a server!");
+  res.status(200).send("I am serving, I am a server!");
 });
 
-app.use(function errorHandler(error, req, res, next) {
-  let reponse;
+//if !main respond with 404, etc..
+app.get ('/main', (req, res) => {
+  res.json
+})
+
+app.get ('/login', (req, res) => {
+  res.json
+})
+
+app.get ('/addform', (req, res) => {
+  res.json
+})
+
+
+
+//error handling
+const errorHandler = (error, req, res, next) => {
+  let response;
+  console.log(error.message);
   if (NODE_ENV === "production") {
     response = { error: { message: "server error" } };
   } else {
-    console.error(error);
+    
     response = { message: error.message, error };
   }
   res.status(500).json(response);
-});
+};
+app.use(errorHandler); 
 
 module.exports = app;
+
