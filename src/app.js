@@ -12,6 +12,7 @@ const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 //routes here
 //food, days
 //the food entry goes into each day, like the notes app
+const data =require ("./app-data");
 
 app.use(morgan(morganOption));
 app.use(helmet());
@@ -23,15 +24,25 @@ app.get("/", (req, res) => {
 
 //if !main respond with 404, etc..
 app.get ('/main', (req, res) => {
-  res.json
+
+res.json(data);
 })
 
 app.get ('/login', (req, res) => {
-  res.json
+  const login = {
+    title: 'login page',
+    content: 'login form'
+  }
+  res.json(login);
 })
 
+//post method
 app.get ('/addform', (req, res) => {
-  res.json
+  const addform = {
+    title: 'add form',
+    content:'enter your food here'
+  }
+  res.json(addform);
 })
 
 
