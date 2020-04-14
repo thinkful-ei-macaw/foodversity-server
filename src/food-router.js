@@ -1,5 +1,7 @@
 const express=require('express');
+const jsonParser = express.json();
 const foodRouter = express.Router();
+const FoodService = require('./food-service.js')
 
 // food only has {
 //     content:
@@ -9,6 +11,7 @@ const serializeFood = (food) => ({
     id: food.id,
     content: food.content,
     days_id: Number(food.days_id),
+    meal_id: Number(food.meal_id),
 });
 
 foodRouter
@@ -25,10 +28,11 @@ foodRouter
 .post(jsonParser, (req, res, next) =>{
     req.app.get('db');
 
-    const {id, content, days_id } = req.body;
+    const {id, content, days_id, meal_id } = req.body;
     const food = {
         content,
         days_id,
+        meal_id,
     };
     if(id) food.id = id;
 
@@ -40,6 +44,20 @@ foodRouter
 });
 
 //update, delete, later
+// foodRouter
+// .route('/main')
+
+//     FoodService
+//     .delete ((req, res, next) =>{
+//         FoodService
+//         .deleteFood(req.app.get('db'), req.params.id)
+//         .then (() => {
+//             res.status(204).json({});
+//         })
+//         .catch(next);
+//     });
+
+        
 
 module.exoports = foodRouter;
 

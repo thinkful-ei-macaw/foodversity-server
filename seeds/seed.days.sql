@@ -1,4 +1,4 @@
-INSERT INTO days (id, title )
+INSERT INTO days (id, title, meal_id )
 VALUES
     (1, 'Monday'),
     (2, 'Tuesday'),

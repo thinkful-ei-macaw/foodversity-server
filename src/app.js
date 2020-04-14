@@ -12,28 +12,35 @@ const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 //routes here
 //food, days
 //the food entry goes into each day, like the notes app
-const data =require ("./app-data");
-
+const daysRouter = require ('./days-router');
+const foodRouter = require ('./food-router');
+const data = require ('./app-data');
+const userId = require ('./users-login');
+//middle ware
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
+
+//route middleware
+// app.use('/days', daysRouter);
+//app.use('/food', foodRouter);
+
 
 app.get("/", (req, res) => {
   res.status(200).send("I am serving, I am a server!");
 });
 
-//if !main respond with 404, etc..
-app.get ('/main', (req, res) => {
+app.get('/main', (req, res) => {
+  res.json(data);
+});
 
-res.json(data);
-})
 
 app.get ('/login', (req, res) => {
-  const login = {
-    title: 'login page',
-    content: 'login form'
-  }
-  res.json(login);
+  // const login = {
+  //   title: 'login page',
+  //   content: 'login form'
+  // }
+  res.json(userId);
 })
 
 //post method

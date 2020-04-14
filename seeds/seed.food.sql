@@ -1,4 +1,4 @@
-INSERT INTO food (id, content, days_id)
+INSERT INTO food (id, content, days_id, meal_id)
 VALUES
     (1, 'bread', 2),
     (2, 'tomatoes', 2),
