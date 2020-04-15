@@ -77,6 +77,7 @@ daysRouter
         res.json(day).then((day) => {
             res.status(201).json(serializeDays(day));
         })
+        .catch(next);
     })
 })
 

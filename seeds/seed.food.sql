@@ -1,11 +1,11 @@
 INSERT INTO foods (id, content, days_id )
 VALUES
-    (1, 'bread', 2),
-    (2, 'tomatoes', 2),
-    (3, 'brocolli', 5),
-    (4, 'eggs', 3),
-(5, 'chicken', 2),
-(6, 'vodka', 2),
-(7, 'tacos', 4),
-(8, 'lasagna', 4);
+    (14, 'bread', 2),
+    (242, 'tomatoes', 2),
+    (31, 'brocolli', 5),
+    (49, 'eggs', 3),
+(53, 'chicken', 2),
+(60, 'vodka', 2),
+(72, 'tacos', 4),
+(88, 'lasagna', 4);
     

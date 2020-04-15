@@ -11,7 +11,7 @@ const serializeFoods = (food) => ({
     id: food.id,
     content: food.content,
     days_id: Number(food.days_id),
-    meal_id: Number(food.meal_id),
+    // meal_id: Number(food.meal_id),
 });
 
 foodsRouter
@@ -28,11 +28,11 @@ foodsRouter
 .post(jsonParser, (req, res, next) =>{
     req.app.get('db');
 
-    const {id, content, days_id, meal_id } = req.body;
+    const {id, content, days_id } = req.body;
     const food = {
         content,
         days_id,
-        meal_id,
+        // meal_id,
     };
     if(id) food.id = id;
 
