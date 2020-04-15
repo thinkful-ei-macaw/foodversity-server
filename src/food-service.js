@@ -1,29 +1,38 @@
-const FoodService = {
-    getAllFood(knex){
-        // return 'all the fooooods!!'
-   return knex.select('*').from('food');
-   
+const FoodsService = {
+    getAllFoods(knex) {
+      return knex.select('*').from('foods');
     },
-    insertFood(knex, newEntry){
-        return knex
-        .insert(newEntry)
-        .into('food')
+  
+    insertFood(knex, newFood) {
+      return knex
+        .insert(newFood)
+        .into('foods')
         .returning('*')
-        .then((food) =>{
-return food[0];
+        .then((food) => {
+          return food[0];
         });
     },
+  
     getById(knex, id) {
-        return knex.select('*').from('food').where('id', id).first();
-
+      return knex.select('*').from('foods').where('id', id).first();
     },
-    delete (knex, id){
-        return knex('food')
+  
+    deleteFood(knex, id) {
+      return knex('foods')
         .where({
-            id,
+          id,
         })
         .delete();
-    }
-}
-
-module.exports = FoodService
+    },
+  
+    updateFood(knex, id, newfoodFields) {
+      return knex('foods')
+        .where({
+          id,
+        })
+        .update(newFoodFields);
+    },
+  };
+  
+  module.exports = FoodsService;
+  
