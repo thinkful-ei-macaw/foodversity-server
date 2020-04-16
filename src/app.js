@@ -13,7 +13,7 @@ const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 //food, days
 //the food entry goes into each day, like the notes app
 const daysRouter = require ('./days-router');
-const foodRouter = require ('./food-router');
+const foodsRouter = require ('./food-router');
 // const data = require ('./app-data');
 // const userId = require ('./users-login');
 // const days = require('./days-data');
@@ -25,7 +25,7 @@ app.use(cors());
 //route middleware
 
 app.use('/days', daysRouter);
-app.use('/food', foodRouter);
+app.use('/food', foodsRouter);
 
 
 app.get("/", (req, res) => {

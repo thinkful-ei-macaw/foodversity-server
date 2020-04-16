@@ -28,13 +28,13 @@ foodsRouter
 .post(jsonParser, (req, res, next) =>{
     req.app.get('db');
 
-    const {id, content, days_id } = req.body;
+    const { content, days_id } = req.body;
     const food = {
         content,
         days_id,
         // meal_id,
     };
-    if(id) food.id = id;
+   
 
     FoodsService.insertFood(req.app.get('db'), food)
     .then((food) => {
@@ -49,7 +49,7 @@ foodsRouter
   .get((req, res, next) => {
     const { id } = req.params;
     
-    foodsService
+    FoodsService
       .getById(req.app.get('db'), id)
       .then((food) => {
         if (food) {
@@ -80,16 +80,16 @@ foodsRouter
       });
     }
 
-    foodsService
-      .updatefood(req.app.get('db'), foodToUpdate)
+   FoodsService
+      .updateFood(req.app.get('db'), foodToUpdate)
       .then((foodToUpdate) => {
         res.json(foodToUpdate);
       })
       .catch(next);
   })
   .delete((req, res, next) => {
-    foodsService
-      .deletefood(req.app.get('db'), req.params.id)
+    FoodsService
+      .deleteFood(req.app.get('db'), req.params.id)
       .then(() => {
         res.status(204).json({});
       })
