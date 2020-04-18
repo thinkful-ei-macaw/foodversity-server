@@ -28,7 +28,7 @@ daysRouter
     })
     .catch(next);
 })
-.patch((req, res, next) => {
+.post((req, res, next) => {
     const { title } = req.body;
     const day = {
         title,

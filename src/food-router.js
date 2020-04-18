@@ -10,6 +10,7 @@ const FoodsService = require('./food-service.js')
 const serializeFoods = (food) => ({
     id: food.id,
     content: food.content,
+   
     days_id: Number(food.days_id),
     // meal_id: Number(food.meal_id),
 });
@@ -31,8 +32,9 @@ foodsRouter
     const { content, days_id } = req.body;
     const food = {
         content,
+      
         days_id,
-        // meal_id,
+        // meal_type,
     };
    
 
@@ -67,7 +69,7 @@ foodsRouter
       id,
       
       content,
-    
+     
     };
 
     if (!title) {
