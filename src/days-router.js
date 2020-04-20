@@ -13,7 +13,7 @@ daysRouter
 .route('/:id')
 .get((req, res, next)=>{
     DaysService
-    .getAllDays(req.app.get('db'))
+    // .getAllDays(req.app.get('db'))
     .getByDayId(req.app.get('db'), req.params.id)
     .then((day)=>{
         if(!day)
