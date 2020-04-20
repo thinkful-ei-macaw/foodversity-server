@@ -1,4 +1,4 @@
-const daysService = {
+const DaysService = {
     getAllDays(knex) {
       return knex.select('*').from('days');
     },
@@ -18,7 +18,7 @@ const daysService = {
     },
   
     deleteDay(knex, id) {
-      return knex
+      return knex('days')
         .where({
           id,
         })
@@ -34,5 +34,5 @@ const daysService = {
     },
   };
   
-  module.exports = daysService;
+  module.exports = DaysService;
   

@@ -25,7 +25,7 @@ const FoodsService = {
         .delete();
     },
   
-    updateFood(knex, id, newfoodFields) {
+    updateFood(knex, id, newFoodFields) {
       return knex('foods')
         .where({
           id,

@@ -2,7 +2,7 @@ const express = require('express');
 const jsonParser = express.json();
 const daysRouter = express.Router();
 const path = require('path');
-const daysService = require('./days-service');
+const DaysService = require('./days-service');
 
 const serializeDays = (day) =>({
     id: day.id,
@@ -11,8 +11,9 @@ const serializeDays = (day) =>({
 
 daysRouter
 .route('/:id')
-.all((req, res, next)=>{
-    daysService
+.get((req, res, next)=>{
+    DaysService
+    .getAllDays(req.app.get('db'))
     .getByDayId(req.app.get('db'), req.params.id)
     .then((day)=>{
         if(!day)
@@ -38,10 +39,14 @@ daysRouter
             error: 'must include day',
         });
     }
-    daysService.updateDay(req.app.get('db'), day).catch(next);
+    DaysService.updateDay(req.app.get('db'), day)
+    .catch(next);
 })
+
 .delete((req, res, next) => {
-    daysService
+    console.log(req.params.id)
+
+    DaysService
     .deleteDay(req.app.get('db'), req.params.id)
     .then (() =>{
         res.status(204).end();
@@ -52,7 +57,7 @@ daysRouter
 daysRouter
 .route('/')
 .get((req, res, next) => {
-    daysService
+    DaysService
     .getAllDays(req.app.get('db'))
     .then((days)=> {
         res.json(days.map(serializeDays));
@@ -73,12 +78,12 @@ daysRouter
     }
     newDay.title = title;
 
-    daysService.insertDay(req.app.get('db'), newDay).then((day) => {
+    DaysService.insertDay(req.app.get('db'), newDay).then((day) => {
         res.json(day).then((day) => {
             res.status(201).json(serializeDays(day));
         })
-        .catch(next);
     })
+    .catch(next);
 })
 
 

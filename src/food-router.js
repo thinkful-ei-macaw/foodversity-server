@@ -90,6 +90,8 @@ foodsRouter
       .catch(next);
   })
   .delete((req, res, next) => {
+    console.log(req.params.id)
+
     FoodsService
       .deleteFood(req.app.get('db'), req.params.id)
       .then(() => {
