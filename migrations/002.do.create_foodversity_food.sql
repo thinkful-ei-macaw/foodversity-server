@@ -3,6 +3,10 @@ CREATE TABLE foods (
     content TEXT NOT NULL,
     days_id INTEGER REFERENCES days(id),
     meal_type TEXT, --bf/lunch/dinner/dessert
+    -- first_item
+    -- second_item
+    -- third_item
+    -- url
     -- meal_id INTEGER REFERENCES meal(id)
         ON DELETE CASCADE
 );

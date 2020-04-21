@@ -1,63 +1,59 @@
-const express=require('express');
+const express = require("express");
 const jsonParser = express.json();
 const foodsRouter = express.Router();
-const FoodsService = require('./food-service.js')
+const FoodsService = require("./food-service.js");
 
 // food only has {
 //     content:
 //     days_id: which day it belongs to
 // }
 const serializeFoods = (food) => ({
-    id: food.id,
-    content: food.content,
-   
-    days_id: Number(food.days_id),
-    // meal_id: Number(food.meal_id),
+  id: food.id,
+  content: food.content,
+
+  days_id: Number(food.days_id),
+  // meal_id: Number(food.meal_id),
 });
 
 foodsRouter
-.route('/')
-.get((req, res, next)=> {
-    FoodsService
-    .getAllFoods(req.app.get('db'))
-.then((foods)=> {
-    res.json(foods.map(serializeFoods));
-
-})
-.catch(next);
-})
-.post(jsonParser, (req, res, next) =>{
-    req.app.get('db');
-
+  .route("/")
+  .get((req, res, next) => {
+    FoodsService.getAllFoods(req.app.get("db"))
+      .then((foods) => {
+        res.json(foods.map(serializeFoods));
+      })
+      .catch(next);
+  })
+  .post(jsonParser, (req, res, next) => {
+    req.app.get("db");
+    /* need to add meal_type, first_item, second_item, third_item, url */
     const { content, days_id } = req.body;
     const food = {
-        content,
-      
-        days_id,
-        // meal_type,
+      content,
+      days_id,
+      // meal_type,
     };
-   
+    /* need to add meal_type, first_item, second_item, third_item, url */
 
-    FoodsService.insertFood(req.app.get('db'), food)
-    .then((food) => {
+    FoodsService.insertFood(req.app.get("db"), food)
+      .then((food) => {
         return res.json(food);
-    })
-    .catch(next);
-});
+      })
+      .catch(next);
+  });
 
 //update, delete, later
 foodsRouter
-  .route('/:id')
+  .route("/:id")
   .get((req, res, next) => {
     const { id } = req.params;
-    
-    FoodsService
-      .getById(req.app.get('db'), id)
+
+    FoodsService.getById(req.app.get("db"), id)
       .then((food) => {
         if (food) {
           return res.status(200).json(food);
         } else {
-          return res.status(404).send('food not found');
+          return res.status(404).send("food not found");
         }
       })
       .catch(next);
@@ -67,39 +63,34 @@ foodsRouter
 
     const foodToUpdate = {
       id,
-      
+
       content,
-     
     };
 
     if (!title) {
-      return res.status(404).json({ error: 'must include title' });
+      return res.status(404).json({ error: "must include title" });
     }
 
     if (!content) {
       return res.status(404).json({
-        error: 'must include content',
+        error: "must include content",
       });
     }
 
-   FoodsService
-      .updateFood(req.app.get('db'), foodToUpdate)
+    FoodsService.updateFood(req.app.get("db"), foodToUpdate)
       .then((foodToUpdate) => {
         res.json(foodToUpdate);
       })
       .catch(next);
   })
   .delete((req, res, next) => {
-    console.log(req.params.id)
+    console.log(req.params.id);
 
-    FoodsService
-      .deleteFood(req.app.get('db'), req.params.id)
+    FoodsService.deleteFood(req.app.get("db"), req.params.id)
       .then(() => {
         res.status(204).json({});
       })
       .catch(next);
   });
 
-
 module.exports = foodsRouter;
-
