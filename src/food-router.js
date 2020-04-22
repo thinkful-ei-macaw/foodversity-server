@@ -27,13 +27,24 @@ foodsRouter
   .post(jsonParser, (req, res, next) => {
     req.app.get("db");
     /* need to add meal_type, first_item, second_item, third_item, url */
-    const { content, days_id } = req.body;
+    const {
+      content,
+      days_id,
+      // meal_type,
+      // first_item,
+      // second_item,
+      // third_item,
+      // url,
+    } = req.body;
     const food = {
       content,
       days_id,
       // meal_type,
+      // first_item,
+      // second_item,
+      // third_item,
+      // url,
     };
-    /* need to add meal_type, first_item, second_item, third_item, url */
 
     FoodsService.insertFood(req.app.get("db"), food)
       .then((food) => {
