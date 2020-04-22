@@ -10,7 +10,10 @@ const FoodsService = require("./food-service.js");
 const serializeFoods = (food) => ({
   id: food.id,
   content: food.content,
-
+  meal_type: food.meal_type,
+  second_item: food.second_item,
+  third_item: food.third_item,
+  url: food.url,
   days_id: Number(food.days_id),
   // meal_id: Number(food.meal_id),
 });
@@ -26,24 +29,22 @@ foodsRouter
   })
   .post(jsonParser, (req, res, next) => {
     req.app.get("db");
-    /* need to add meal_type, first_item, second_item, third_item, url */
+
     const {
       content,
       days_id,
-      // meal_type,
-      // first_item,
-      // second_item,
-      // third_item,
-      // url,
+      meal_type,
+      second_item,
+      third_item,
+      url,
     } = req.body;
     const food = {
       content,
       days_id,
-      // meal_type,
-      // first_item,
-      // second_item,
-      // third_item,
-      // url,
+      meal_type,
+      second_item,
+      third_item,
+      url,
     };
 
     FoodsService.insertFood(req.app.get("db"), food)
