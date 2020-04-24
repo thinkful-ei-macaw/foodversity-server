@@ -1,7 +1,6 @@
 const app = require("../src/app");
-const chai = require("chai");
-const supertest = require("supertest");
-const expect = chai.expect;
+
+const knex = require("knex");
 
 describe("App", () => {
   it('GET /responds with 200 containing "I am serving, I am a server!"', () => {
@@ -11,7 +10,7 @@ describe("App", () => {
 
 describe("Loading the days page", () => {
   it("should return 200 from GET /days", () => {
-    return supertest(app).get("/days").expect(200);
+    return supertest(app).get("/days").expect(200, days);
   });
 });
 

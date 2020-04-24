@@ -1,7 +1,7 @@
 const express = require("express");
 const jsonParser = express.json();
 const daysRouter = express.Router();
-const path = require("path");
+const { requireAuth } = require("./middleware/jwt-auth");
 const DaysService = require("./days-service");
 
 const serializeDays = (day) => ({
@@ -11,6 +11,7 @@ const serializeDays = (day) => ({
 
 daysRouter
   .route("/:id")
+  .all(requireAuth)
   .get((req, res, next) => {
     DaysService
       // .getAllDays(req.app.get('db'))
@@ -60,7 +61,7 @@ daysRouter
       })
       .catch(next);
   })
-  .post(jsonParser, (req, res, next) => {
+  .post(requireAuth, jsonParser, (req, res, next) => {
     const { title } = req.body;
     const newDay = {
       title,

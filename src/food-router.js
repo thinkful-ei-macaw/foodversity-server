@@ -2,6 +2,7 @@ const express = require("express");
 const jsonParser = express.json();
 const foodsRouter = express.Router();
 const FoodsService = require("./food-service.js");
+const { requireAuth } = require("./middleware/jwt-auth");
 
 // food only has {
 //     content:
@@ -27,7 +28,7 @@ foodsRouter
       })
       .catch(next);
   })
-  .post(jsonParser, (req, res, next) => {
+  .post(requireAuth, jsonParser, (req, res, next) => {
     req.app.get("db");
 
     const {
@@ -45,6 +46,7 @@ foodsRouter
       second_item,
       third_item,
       url,
+      user_id: req.user.id,
     };
 
     FoodsService.insertFood(req.app.get("db"), food)
@@ -57,6 +59,7 @@ foodsRouter
 //update, delete, later
 foodsRouter
   .route("/:id")
+  .all(requireAuth)
   .get((req, res, next) => {
     const { id } = req.params;
 
