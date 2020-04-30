@@ -8,7 +8,6 @@ function makeUsersArray() {
       full_name: "Test user 1",
       nickname: "TU1",
       password: "password",
-      date_created: new Date("2029-01-22T16:28:32.615Z"),
     },
     {
       id: 2,
@@ -16,7 +15,6 @@ function makeUsersArray() {
       full_name: "Test user 2",
       nickname: "TU2",
       password: "password",
-      date_created: new Date("2029-01-22T16:28:32.615Z"),
     },
     {
       id: 3,
@@ -24,7 +22,6 @@ function makeUsersArray() {
       full_name: "Test user 3",
       nickname: "TU3",
       password: "password",
-      date_created: new Date("2029-01-22T16:28:32.615Z"),
     },
     {
       id: 4,
@@ -32,12 +29,11 @@ function makeUsersArray() {
       full_name: "Test user 4",
       nickname: "TU4",
       password: "password",
-      date_created: new Date("2029-01-22T16:28:32.615Z"),
     },
   ];
 }
 
-function makeThingsFixtures() {
+function makeFoodsFixtures() {
   const testUsers = makeUsersArray();
 
   return { testUsers };
@@ -45,5 +41,5 @@ function makeThingsFixtures() {
 
 module.exports = {
   makeUsersArray,
-  makeThingsFixtures,
+  makeFoodsFixtures,
 };
