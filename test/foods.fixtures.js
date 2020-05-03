@@ -2,24 +2,30 @@ function makeFoodsArray() {
   return [
     {
       id: 1,
-      title: "Food 1",
       content: "Content Content",
-
-      day_id: 1,
+      meal_type: null,
+      second_item: null,
+      third_item: null,
+      url: null,
+      days_id: 1,
     },
     {
       id: 2,
-      title: "Food 2",
       content: "Content Content 2",
-
-      day_id: 1,
+      meal_type: null,
+      second_item: null,
+      third_item: null,
+      url: null,
+      days_id: 1,
     },
     {
       id: 3,
-      title: "Food 3",
       content: "Content Content 3",
-
-      day_id: 2,
+      meal_type: null,
+      second_item: null,
+      third_item: null,
+      url: null,
+      days_id: 2,
     },
   ];
 }
